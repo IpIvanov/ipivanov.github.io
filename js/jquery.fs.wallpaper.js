@@ -1,4 +1,4 @@
-;(function ($, window) {
+(function ($, window) {
 	"use strict";
 
 	var $window = $(window),
@@ -264,7 +264,7 @@
 	 */
 	function _loadVideo(source, data) {
 		var $videoContainer = $('<div class="wallpaper-media wallpaper-video"></div>'),
-			html = '<video';
+			html = '<video autoplay';
 
 		if (data.loop) {
 			html += ' loop';
@@ -292,9 +292,10 @@
 				if (data.hoverPlay) {
 					data.$target.on("mouseover.boxer", pub.play)
 								.on("mouseout.boxer", pub.stop);
-				} else if (data.autoPlay) {
-					this.play();
-				}
+				} 
+				// else if (data.autoPlay) {
+				// 	this.play();
+				// }
 			} else {
 				// Otherwise we need to animate it in
 				$videoContainer.appendTo(data.$container)

@@ -10,7 +10,7 @@
         socialHeight = (winWidth > 640) ? 120 : 160;
 
     }
-    
+
     setWidth();
 
     $(window).on('resize', setWidth);
@@ -50,24 +50,44 @@
         });
         //Menu Icon
         var trigger = $('#hamburger'),
-        isClosed = true;
+            isClosed = true;
 
         trigger.on('click', function () {
-          burgerTime();
+            burgerTime();
         });
 
         function burgerTime() {
-          if (isClosed == true) {
-            trigger.removeClass('is-closed');
-            trigger.addClass('is-open');
-            isClosed = false;
-          } else {
-            trigger.removeClass('is-open');
-            trigger.addClass('is-closed');
-            isClosed = true;
-          }
+            if (isClosed == true) {
+                trigger.removeClass('is-closed');
+                trigger.addClass('is-open');
+                isClosed = false;
+            } else {
+                trigger.removeClass('is-open');
+                trigger.addClass('is-closed');
+                isClosed = true;
+            }
         }
-        $('#nav ul li').on('click', function() {
+
+        $('#nav > ul > li ').each(function (index) {
+            var _self = $(this).children();
+
+            $(this).on('click', function () {
+                var href = $(_self).attr("href");
+                scrollToDiv(href);
+            });
+        });
+
+        function scrollToDiv(element) {
+            $('html,body')
+                .unbind()
+                .animate(
+                    {
+                        scrollTop: $(element).offset().top - 50
+                    }
+                    , 'slow');
+        };
+
+        $('#nav ul li').on('click', function () {
             burgerTime();
         });
         //Menu toggle
@@ -109,7 +129,7 @@
                 if (this.$.data('skin') == 'cr3ativ') {
 
                     var a = this.angle(this.cv) // Angle
-                    ,
+                        ,
                         sa = this.startAngle // Previous start angle
                         ,
                         sat = this.startAngle // Start angle
@@ -147,9 +167,9 @@
                 }
             }
         });
-		
-		
-   
+
+
+
 
         //plusAnchor
         $('body').plusAnchor({
@@ -292,86 +312,12 @@
             startDragging: false,
             afterLazyLoad: false
 
-        })
-
-        //Contact Form
-        $(document).on('submit', 'form#contact_form', function (e) {
-        
-            e.preventDefault();
-        
-            $('form#contact_form .error').remove();
-        
-            var hasError = false;
-            var response = grecaptcha.getResponse();
-            if (response === '') {
-                
-               $("<span class='error'>reCAPTCHA error</span>").insertBefore($('#submitted').parent());
-                hasError = true;
-            }
-
-            $('.requiredField').each(function () {
-        
-                if ($.trim($(this).val()) == '') {
-        
-                    var labelText = $(this).prev('label').text();
-        
-                    $(this).parent().append('<span class="error">Please complete the required fields.</span>');
-        
-                    $(this).addClass('inputError');
-        
-                    hasError = true;
-        
-                } else if ($(this).hasClass('email')) {
-        
-                    var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
-        
-                    if (!emailReg.test($.trim($(this).val()))) {
-        
-                        var labelText = $(this).prev('label').text();
-         
-						$(this).parent().append('<span class="error">You entered an invalid email</span>');
-                 
-                        $(this).addClass('inputError');
-                 
-                        hasError = true;
-                 
-                    }
-                
-                }
-
-            
-            });
-            
-            if (!hasError) {
-            
-                $('form#contact_form input.submit').fadeOut('normal', function () {
-            
-                    $(this).parent().append('');
-            
-                });
-            
-                var formInput = $(this).serialize();
-            
-                $.post($(this).attr('action'), formInput, function (data) {
-            
-                    $('form#contact_form').slideUp("fast", function () {
-                        $(this).before('<p class="success">Thank you! Your email was successfully sent. I will contact you as soon as possible.</p>');
-            
-                    });
-            
-                });
-            
-            }
-
-            return false;
-
         });
-        
+
         new WOW().init();
     });
-    
+
 })(window.jQuery, this, document);
 
 
-      	
-        
+

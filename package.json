@@ -1,0 +1,26 @@
+{
+  "name": "ipivanov.github.io",
+  "version": "1.0.0",
+  "description": "Portfolio website",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IpIvanov/ipivanov.github.io.git"
+  },
+  "keywords": [
+    "portfolio"
+  ],
+  "author": "Ivan Ivanov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/IpIvanov/ipivanov.github.io/issues"
+  },
+  "homepage": "https://github.com/IpIvanov/ipivanov.github.io#readme",
+  "devDependencies": {
+    "gulp-bundle-assets": "^2.29.0",
+    "gulp-clean": "^0.4.0"
+  }
+}
