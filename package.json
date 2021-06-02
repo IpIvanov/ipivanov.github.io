@@ -4,6 +4,8 @@
   "description": "Portfolio website",
   "main": "index.html",
   "scripts": {
+    "build": "gulp",
+    "preinstall": "npx npm-force-resolutions",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -20,7 +22,11 @@
   },
   "homepage": "https://github.com/IpIvanov/ipivanov.github.io#readme",
   "devDependencies": {
+    "gulp": "^4.0.2",
     "gulp-bundle-assets": "^2.29.0",
     "gulp-clean": "^0.4.0"
+  },
+  "resolutions": {
+    "graceful-fs": "^4.2.4"
   }
 }
